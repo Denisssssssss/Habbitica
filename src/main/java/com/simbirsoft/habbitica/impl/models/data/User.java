@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -24,12 +25,12 @@ public class User {
     private String email;
     private String username;
     private String hashPassword;
-    private Long balance;
+    @Builder.Default
+    private Long balance = 0L;
 
-    @ManyToMany
-    @JoinTable(joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id"),
-                inverseJoinColumns = @JoinColumn(name = "task_id", referencedColumnName = "id"))
-    private Set<Task> tasks;
+    @Transient
+    @Builder.Default
+    private Set<Task> tasks = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name="subscription",
@@ -56,5 +57,10 @@ public class User {
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    public void increaseBalance(Long value) {
+
+        balance += value;
     }
 }

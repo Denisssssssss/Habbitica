@@ -1,7 +1,9 @@
 package com.simbirsoft.habbitica.impl.controllers;
 
 import com.simbirsoft.habbitica.api.services.TaskService;
+import com.simbirsoft.habbitica.api.services.UserService;
 import com.simbirsoft.habbitica.impl.models.data.Task;
+import com.simbirsoft.habbitica.impl.models.data.User;
 import com.simbirsoft.habbitica.impl.models.dto.TaskDTO;
 import com.simbirsoft.habbitica.impl.models.form.TaskForm;
 import com.simbirsoft.habbitica.impl.security.details.UserDetailsImpl;
@@ -20,10 +22,13 @@ import java.util.List;
 public class TasksController {
 
     private TaskService taskService;
+    private UserService userService;
 
     @Autowired
-    public TasksController(TaskService taskService) {
+    public TasksController(TaskService taskService,
+                           UserService userService) {
         this.taskService = taskService;
+        this.userService = userService;
     }
 
     @GetMapping("/tasks")
@@ -33,14 +38,6 @@ public class TasksController {
         model.addAttribute("tasks", tasks);
 
         return "tasks_page";
-    }
-
-    @PostMapping("/tasks/{task-id}")
-    public String takeTask(@PathVariable("task-id") Long id,
-                           @AuthenticationPrincipal UserDetailsImpl userDetails) {
-
-
-        return "redirect:/tasks";
     }
 
     @GetMapping("/tasks/add")
@@ -63,5 +60,15 @@ public class TasksController {
         taskService.save(task);
 
         return "redirect:/tasks/add";
+    }
+
+    @PostMapping("/tasks/{task-id}")
+    public String takeTask(@AuthenticationPrincipal UserDetailsImpl userDetails,
+                           @PathVariable("task-id") Long id){
+
+        User user = userDetails.getUser();
+        userService.takeTask(id, user);
+
+        return "redirect:/tasks";
     }
 }

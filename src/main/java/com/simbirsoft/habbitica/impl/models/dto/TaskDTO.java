@@ -16,12 +16,14 @@ public class TaskDTO {
     private Long id;
     private String title;
     private String description;
+    private Long reward;
 
     public static TaskDTO from(Task task) {
         return TaskDTO.builder()
                 .id(task.getId())
                 .title(task.getTitle())
                 .description(task.getDescription())
+                .reward(task.getReward())
                 .build();
     }
 
