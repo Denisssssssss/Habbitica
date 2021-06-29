@@ -9,6 +9,10 @@ public interface AchievementService {
 
     Achievement save(Achievement achievement);
 
+    List<AchievementDto> findAllSorted();
+
+    List<AchievementDto> findByCategory(String category);
+
     List<AchievementDto> findAll();
 
     AchievementDto findById(Long id);

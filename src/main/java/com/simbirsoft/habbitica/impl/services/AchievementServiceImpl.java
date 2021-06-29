@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.simbirsoft.habbitica.impl.models.dto.AchievementDto.from;
 
@@ -33,6 +34,16 @@ public class AchievementServiceImpl implements AchievementService {
     @Override
     public Achievement save(Achievement achievement) {
         return achievementRepository.save(achievement);
+    }
+
+    @Override
+    public List<AchievementDto> findAllSorted() {
+        return findAll().stream().sorted().collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AchievementDto> findByCategory(String category) {
+        return findAll().stream().filter(x -> x.getCategory().equals(category)).collect(Collectors.toList());
     }
 
     @Override

@@ -69,7 +69,23 @@ public class ProfileController {
 
         model.addAttribute("achievements", userDetails.getUser().getAchievements());
 
-        return "user_achievements_page";
+        return "my_achievements_page";
+    }
+
+    @GetMapping("/profile/{user-id}/achievements")
+    public String getUserAchievements(@AuthenticationPrincipal UserDetailsImpl userDetails,
+                                      @PathVariable("user-id") Long id,
+                                      Model model) {
+
+        User user = userService.getUserById(id);
+        model.addAttribute("achievements", user.getAchievements());
+        model.addAttribute("user", user);
+
+        if (user.getId().equals(userDetails.getUser().getId())) {
+            return "my_achievements_page";
+        } else {
+            return "achievements_page";
+        }
     }
 
     @PostMapping("/profile/tasks/{task-id}")
@@ -119,6 +135,9 @@ public class ProfileController {
 
         model.addAttribute("user", user);
 
-        return "profile_page";
+        if (user.getId().equals(userDetails.getUser().getId())) {
+            return "my_profile_page";
+        } else
+            return "profile_page";
     }
 }

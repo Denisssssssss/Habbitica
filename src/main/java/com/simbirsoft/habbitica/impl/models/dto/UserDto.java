@@ -15,10 +15,15 @@ public class UserDto {
 
     private Long id;
     private String username;
+    private String path;
 
     public static UserDto from(User user) {
 
-        return UserDto.builder().id(user.getId()).username(user.getUsername()).build();
+        return UserDto.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .path(user.getPath())
+                .build();
     }
 
     public static List<UserDto> from(List<User> users) {
