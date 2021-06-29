@@ -3,7 +3,7 @@
 <#import "spring.ftl" as spring>
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Задачи</title>
     <style>
         h1 {
             font-size: 150%;

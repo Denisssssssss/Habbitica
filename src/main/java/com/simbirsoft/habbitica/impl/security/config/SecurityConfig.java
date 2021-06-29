@@ -31,12 +31,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().disable();
         http.csrf().disable();
         http.authorizeRequests()
+                .antMatchers("/").permitAll()
                 .antMatchers("/signUp").permitAll()
                 .antMatchers("/signIn").permitAll()
                 .antMatchers("/confirm/**").permitAll()
+                .antMatchers("/profile/**").authenticated()
+                .antMatchers("/tasks/**").authenticated()
+                .antMatchers("/achievements/**").authenticated()
                 .antMatchers("/tasks/add").hasAuthority("ADMIN")
                 .antMatchers("/achievements/add").hasAuthority("ADMIN")
-                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/signIn")

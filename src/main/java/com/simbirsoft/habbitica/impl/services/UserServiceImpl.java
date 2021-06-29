@@ -76,6 +76,8 @@ public class UserServiceImpl implements UserService {
                 .path(path + defaultImage)
                 .build();
 
+        System.out.println(user.getPath());
+
         userRepository.save(user);
         String code = UUID.randomUUID().toString();
 
