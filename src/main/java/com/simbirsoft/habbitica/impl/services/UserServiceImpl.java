@@ -1,11 +1,13 @@
 package com.simbirsoft.habbitica.impl.services;
 
-import com.simbirsoft.habbitica.api.repositories.*;
+import com.simbirsoft.habbitica.api.repositories.AchievementRepository;
+import com.simbirsoft.habbitica.api.repositories.ConfirmUserRepository;
+import com.simbirsoft.habbitica.api.repositories.TaskRepository;
+import com.simbirsoft.habbitica.api.repositories.UserRepository;
 import com.simbirsoft.habbitica.api.services.MailService;
 import com.simbirsoft.habbitica.api.services.UserService;
 import com.simbirsoft.habbitica.impl.models.data.Achievement;
 import com.simbirsoft.habbitica.impl.models.data.ConfirmUser;
-import com.simbirsoft.habbitica.impl.models.data.Subscription;
 import com.simbirsoft.habbitica.impl.models.data.Task;
 import com.simbirsoft.habbitica.impl.models.data.User;
 import com.simbirsoft.habbitica.impl.models.dto.UserDto;
@@ -30,11 +32,6 @@ import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import static com.simbirsoft.habbitica.impl.models.dto.UserDto.from;
 
 @Service
@@ -57,7 +54,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            TaskRepository taskRepository,
-                           PasswordEncoder passwordEncoder) {
+                           PasswordEncoder passwordEncoder,
+                           AchievementRepository achievementRepository,
+                           ConfirmUserRepository confirmUserRepository,
+                           ExecutorService executorService,
+                           MailService mailService) {
         this.userRepository = userRepository;
         this.taskRepository = taskRepository;
         this.confirmUserRepository = confirmUserRepository;
@@ -87,6 +88,12 @@ public class UserServiceImpl implements UserService {
         executorService.submit(() -> mailService.sendEmail(user.getEmail(), code));
 
         return from(user);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     @Override
@@ -166,14 +173,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-
-
     @Override
     public UserDto getById(Long id) {
         return UserDto.from(userRepository.getById(id));
     }
-
-
 
     @Override
     public UsersPage search(Integer size, Integer page, String query, String sortParam, String directionParam) {

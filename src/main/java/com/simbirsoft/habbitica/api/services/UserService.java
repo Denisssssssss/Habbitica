@@ -6,11 +6,11 @@ import com.simbirsoft.habbitica.impl.models.dto.UsersPage;
 import com.simbirsoft.habbitica.impl.models.form.UserForm;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-
 public interface UserService {
 
     UserDto save(UserForm userForm);
+
+    User getUserById(Long id);
 
     void addReward(Long reward, User user);
 
