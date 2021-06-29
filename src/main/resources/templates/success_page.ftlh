@@ -5,7 +5,7 @@
     <title>Success!</title>
 </head>
 <body>
-Successfully confirmed!
-<a href="/signIn">Авторизоваться</a>
+Ваш аккаунт подтвержден!
+<a href="/signIn">Войти</a>
 </body>
 </html>

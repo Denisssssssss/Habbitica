@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class TasksController {
@@ -39,11 +40,14 @@ public class TasksController {
     @GetMapping("/tasks")
     public String getTasksPage(@AuthenticationPrincipal UserDetailsImpl usr, Model model) {
 
-        List<TaskDTO> tasks = taskService.findAll();
+        List<TaskDTO> tasks = taskService.findAllSorted();
         User user = usr.getUser();
+        List<?> list = tasks.stream().map(TaskDTO::getCategory).distinct().collect(Collectors.toList());
         //0 - admin, 1 - user
         model.addAttribute("authority", user.getRole().equals(User.Role.ADMIN) ? 0 : 1);
         model.addAttribute("tasks", tasks);
+        model.addAttribute("size", list.size());
+        model.addAttribute("categories", list);
 
         return "tasks_page";
     }
@@ -63,6 +67,7 @@ public class TasksController {
                 .title(form.getTitle())
                 .description(form.getDescription())
                 .reward(form.getReward())
+                .category(form.getCategory())
                 .build();
 
         taskService.save(task);
@@ -72,12 +77,30 @@ public class TasksController {
 
     @PostMapping("/tasks/{task-id}")
     public String takeTask(@AuthenticationPrincipal UserDetailsImpl userDetails,
-                           @PathVariable("task-id") Long id){
+                           @PathVariable("task-id") Long id) {
 
         userDetails = (UserDetailsImpl) userDetailsService.loadUserByUsername(userDetails.getUsername());
         User user = userDetails.getUser();
         userService.takeTask(id, user);
 
         return "redirect:/tasks";
+    }
+
+    @GetMapping("/tasks/{category-name}")
+    public String getTasksByCategory(@AuthenticationPrincipal UserDetailsImpl userDetails,
+                                     @PathVariable("category-name") String name,
+                                     Model model) {
+
+        List<TaskDTO> tasks = taskService.findAll();
+        List<?> list = tasks.stream().map(TaskDTO::getCategory).distinct().collect(Collectors.toList());
+        tasks = tasks.stream().filter(x -> x.getCategory().equals(name)).collect(Collectors.toList());
+        User user = userDetails.getUser();
+        //0 - admin, 1 - user
+        model.addAttribute("authority", user.getRole().equals(User.Role.ADMIN) ? 0 : 1);
+        model.addAttribute("tasks", tasks);
+        model.addAttribute("size", list.size());
+        model.addAttribute("categories", list);
+
+        return "tasks_page";
     }
 }

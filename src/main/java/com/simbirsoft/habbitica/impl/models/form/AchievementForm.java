@@ -14,5 +14,9 @@ public class AchievementForm {
     @NotBlank
     private Long taskId;
     @NotBlank
+    private String category;
+
+    private Long reward;
+    @NotBlank
     private int count;
 }

@@ -11,14 +11,14 @@
     </style>
 </head>
 <body>
-<h1>My achievements</h1>
+<h1>Мои достижения</h1>
 <#list achievements as achievement>
     <form action="/profile/achievements" method="get">
         <h1>${achievement.title}</h1>
         <p>${achievement.description}</p>
     </form>
     <div class="back">
-        <a href="/profile">Back to profile</a>
+        <a href="/profile">Профиль</a>
     </div>
 </#list>
 </body>

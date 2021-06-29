@@ -12,4 +12,8 @@ public interface TaskService {
     List<TaskDTO> findAll();
 
     TaskDTO findById(Long id);
+
+    List<TaskDTO> findByCategory(String category);
+
+    List<TaskDTO> findAllSorted();
 }
