@@ -142,14 +142,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void changeData(User user, MultipartFile file, String newName) {
 
-        String fileName = UUID.randomUUID().toString() + ".jpg";
-        String dir = System.getProperty("user.dir") + path;
-        File imageFile = new File(dir + fileName);
-        try {
-            OutputStream os = new FileOutputStream(imageFile);
-            os.write(file.getBytes());
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
+        if (!file.isEmpty()) {
+            String fileName = UUID.randomUUID().toString() + ".jpg";
+            String dir = System.getProperty("user.dir") + path;
+            File imageFile = new File(dir + fileName);
+            try {
+                OutputStream os = new FileOutputStream(imageFile);
+                os.write(file.getBytes());
+            } catch (IOException e) {
+                throw new IllegalStateException(e);
+            }
+            user.setPath(path + fileName);
         }
 
         if (newName.length() < 1) {
@@ -160,7 +163,6 @@ public class UserServiceImpl implements UserService {
             user.setUsername(newName);
         }
 
-        user.setPath(path + fileName);
         userRepository.save(user);
     }
 
