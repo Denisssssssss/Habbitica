@@ -1,7 +1,6 @@
 package com.simbirsoft.habbitica.impl.models.dto;
 
 import com.simbirsoft.habbitica.impl.models.data.Achievement;
-import com.simbirsoft.habbitica.impl.models.data.Task;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,7 +14,9 @@ public class AchievementDto {
     private Long id;
     private String title;
     private String description;
+    private String category;
     private Long taskId;
+    private Long reward;
     private int count;
 
     public static AchievementDto from(Achievement achievement) {
@@ -25,6 +26,8 @@ public class AchievementDto {
                 .description(achievement.getDescription())
                 .taskId(achievement.getTaskId())
                 .count(achievement.getCount())
+                .category(achievement.getCategory())
+                .reward(achievement.getReward())
                 .build();
     }
 

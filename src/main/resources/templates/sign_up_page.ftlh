@@ -1,7 +1,7 @@
 <html>
 <#import "spring.ftl" as spring>
 <head>
-    <title>Sign up</title>
+    <title>Регистрация</title>
 </head>
 <body>
 <@spring.bind "userForm"/>
@@ -22,7 +22,7 @@
         <input type="submit" value="Enter">
     </div>
     <div class="container signin">
-        <p>Already have an account? <a href="/signIn">Sign in</a>.</p>
+        <p>Уже есть аккаунт? <a href="/signIn">Войти</a>.</p>
     </div>
 </form>
 </body>

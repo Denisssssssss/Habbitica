@@ -1,7 +1,7 @@
 <html>
 <#import "spring.ftl" as spring>
 <head>
-    <title>Sign in</title>
+    <title>Вход</title>
     <script type="text/javascript" src="../js/main.js"></script>
 </head>
 <body>
@@ -17,7 +17,7 @@
         <input type="submit" value="Enter">
     </div>
     <div class="container signin">
-        <p>Doesn't have an account yet? <a href="/signUp">Sign up</a>.</p>
+        <p>Еще нет аккаунта? <a href="/signUp">Регистрация</a>.</p>
     </div>
 </form>
 </body>

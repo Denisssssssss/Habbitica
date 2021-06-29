@@ -13,6 +13,8 @@ public class TaskForm {
     private String title;
     @NotBlank
     private String description;
+    @NotBlank
+    private String category;
 
     private Long reward;
 }

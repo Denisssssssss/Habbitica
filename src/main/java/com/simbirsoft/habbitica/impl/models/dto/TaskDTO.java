@@ -11,11 +11,12 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Builder
-public class TaskDTO {
+public class TaskDTO implements Comparable {
 
     private Long id;
     private String title;
     private String description;
+    private String category;
     private Long reward;
 
     public static TaskDTO from(Task task) {
@@ -24,10 +25,17 @@ public class TaskDTO {
                 .title(task.getTitle())
                 .description(task.getDescription())
                 .reward(task.getReward())
+                .category(task.getCategory())
                 .build();
     }
 
     public static List<TaskDTO> from(List<Task> tasks) {
         return tasks.stream().map(TaskDTO::from).collect(Collectors.toList());
+    }
+
+    @Override
+    public int compareTo(Object o) {
+
+        return this.getCategory().compareTo(((TaskDTO) o).getCategory());
     }
 }
