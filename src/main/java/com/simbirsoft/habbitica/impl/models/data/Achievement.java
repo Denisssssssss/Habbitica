@@ -27,6 +27,7 @@ public class Achievement {
     private String title;
     private String description;
     private Long taskId;
+    private String category;
+    private Long reward;
     private int count;
-
 }

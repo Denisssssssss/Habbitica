@@ -3,7 +3,7 @@
 <#import "spring.ftl" as spring>
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Профиль</title>
     <style>
         h1 {
             font-size: 150%;
@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-<h1>My tasks</h1>
+<h1>Мои задачи</h1>
 <#list tasks as task>
     <form action="/profile/tasks/${task.id}" method="post">
         <h1>${task.title}</h1>

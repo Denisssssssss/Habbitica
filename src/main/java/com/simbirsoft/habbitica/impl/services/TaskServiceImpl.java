@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.simbirsoft.habbitica.impl.models.dto.TaskDTO.from;
 
@@ -45,5 +46,17 @@ public class TaskServiceImpl implements TaskService {
 
         return from(taskRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("Task not found")));
+    }
+
+    @Override
+    public List<TaskDTO> findByCategory(String category) {
+
+        return findAll().stream().filter(x -> x.getCategory().equals(category)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TaskDTO> findAllSorted() {
+
+        return findAll().stream().sorted().collect(Collectors.toList());
     }
 }

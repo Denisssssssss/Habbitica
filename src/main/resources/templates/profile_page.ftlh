@@ -3,11 +3,11 @@
 <#import "spring.ftl" as spring>
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Профиль</title>
     <link rel="stylesheet" , href="../css/style.css">
 </head>
 <body>
-<h1>Profile</h1>
+<h1>Профиль</h1>
 <h2>${user.username}</h2>
 <img src="${user.path}" style="width:250px;height:250px" alt="${user.path}">
 <div class="container my_tasks">

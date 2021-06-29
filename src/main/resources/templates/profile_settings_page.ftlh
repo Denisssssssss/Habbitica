@@ -3,10 +3,10 @@
 <#import "spring.ftl" as spring>
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Профиль</title>
 </head>
 <body>
-<h1>Settings</h1>
+<h1>Настройки</h1>
 <form enctype="multipart/form-data" method="post" action="/profile/settings">
     <p><input type="file" name="image">
         <input type="text" name="username" placeholder="${user.username}">

@@ -23,6 +23,8 @@ public class Task implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "account_id", referencedColumnName = "id"))
     private Set<User> users;
 
+    public String category;
+
     private String title;
     private String description;
     private Long reward;

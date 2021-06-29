@@ -88,7 +88,7 @@ public class ProfileController {
                               @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
 
-            userService.changeData(userDetails.getUser(), file, username);
+        userService.changeData(userDetails.getUser(), file, username);
         Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails,
                 userDetails.getPassword(), userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
