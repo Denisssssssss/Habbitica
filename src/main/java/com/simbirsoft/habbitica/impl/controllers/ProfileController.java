@@ -4,6 +4,7 @@ import com.simbirsoft.habbitica.api.services.AchievementService;
 import com.simbirsoft.habbitica.api.services.TaskService;
 import com.simbirsoft.habbitica.api.services.UserService;
 import com.simbirsoft.habbitica.impl.models.data.User;
+import com.simbirsoft.habbitica.impl.models.dto.UserDto;
 import com.simbirsoft.habbitica.impl.security.details.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -49,7 +50,7 @@ public class ProfileController {
 
         model.addAttribute("user", userDetails.getUser());
 
-        return "profile_page";
+        return "my_profile_page";
     }
 
     @GetMapping("/profile/tasks")
@@ -107,5 +108,17 @@ public class ProfileController {
         model.addAttribute("user", user);
 
         return "profile_settings_page";
+    }
+
+    @GetMapping("/profile/{user-id}")
+    public String getProfileById(@AuthenticationPrincipal UserDetailsImpl userDetails,
+                                 Model model,
+                                 @PathVariable("user-id") Long id) {
+
+        UserDto user = userService.getById(id);
+
+        model.addAttribute("user", user);
+
+        return "profile_page";
     }
 }

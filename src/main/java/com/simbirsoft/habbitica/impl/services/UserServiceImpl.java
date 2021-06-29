@@ -1,19 +1,21 @@
 package com.simbirsoft.habbitica.impl.services;
 
-import com.simbirsoft.habbitica.api.repositories.AchievementRepository;
-import com.simbirsoft.habbitica.api.repositories.ConfirmUserRepository;
-import com.simbirsoft.habbitica.api.repositories.TaskRepository;
-import com.simbirsoft.habbitica.api.repositories.UserRepository;
+import com.simbirsoft.habbitica.api.repositories.*;
 import com.simbirsoft.habbitica.api.services.MailService;
 import com.simbirsoft.habbitica.api.services.UserService;
 import com.simbirsoft.habbitica.impl.models.data.Achievement;
 import com.simbirsoft.habbitica.impl.models.data.ConfirmUser;
+import com.simbirsoft.habbitica.impl.models.data.Subscription;
 import com.simbirsoft.habbitica.impl.models.data.Task;
 import com.simbirsoft.habbitica.impl.models.data.User;
 import com.simbirsoft.habbitica.impl.models.dto.UserDto;
+import com.simbirsoft.habbitica.impl.models.dto.UsersPage;
 import com.simbirsoft.habbitica.impl.models.form.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,11 @@ import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import static com.simbirsoft.habbitica.impl.models.dto.UserDto.from;
 
 @Service
@@ -40,7 +47,7 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
     private ExecutorService executorService;
     private MailService mailService;
-    
+
     @Value("${images.path}")
     private String path;
 
@@ -48,14 +55,9 @@ public class UserServiceImpl implements UserService {
     private String defaultImage;
 
     @Autowired
-    public UserServiceImpl(AchievementRepository achievementRepository,
-                           UserRepository userRepository,
+    public UserServiceImpl(UserRepository userRepository,
                            TaskRepository taskRepository,
-                           ConfirmUserRepository confirmUserRepository,
-                           ExecutorService executorService,
-                           MailService mailService,
                            PasswordEncoder passwordEncoder) {
-        this.achievementRepository = achievementRepository;
         this.userRepository = userRepository;
         this.taskRepository = taskRepository;
         this.confirmUserRepository = confirmUserRepository;
@@ -136,7 +138,7 @@ public class UserServiceImpl implements UserService {
         taskRepository.save(task);
         userRepository.save(user);
     }
-    
+
     @Override
     public void changeData(User user, MultipartFile file, String newName) {
 
@@ -161,4 +163,42 @@ public class UserServiceImpl implements UserService {
         user.setPath(path + fileName);
         userRepository.save(user);
     }
+
+
+
+    @Override
+    public UserDto getById(Long id) {
+        return UserDto.from(userRepository.getById(id));
+    }
+
+
+
+    @Override
+    public UsersPage search(Integer size, Integer page, String query, String sortParam, String directionParam) {
+
+        Sort.Direction dir = Sort.Direction.ASC;
+        Sort sort = Sort.by(dir, "id");
+
+        if (sortParam != null) {
+            dir = Sort.Direction.fromString(directionParam);
+        }
+
+        if (sortParam != null) {
+            sort = Sort.by(dir, sortParam);
+        }
+
+        if (query == null) {
+            query = "empty";
+        }
+
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
+        Page<User> usersPage = userRepository.search(query, pageRequest);
+
+        return UsersPage.builder()
+                .pagesCount(usersPage.getTotalPages())
+                .users(UserDto.from(usersPage.getContent()))
+                .build();
+    }
+
+
 }

@@ -2,8 +2,11 @@ package com.simbirsoft.habbitica.api.services;
 
 import com.simbirsoft.habbitica.impl.models.data.User;
 import com.simbirsoft.habbitica.impl.models.dto.UserDto;
+import com.simbirsoft.habbitica.impl.models.dto.UsersPage;
 import com.simbirsoft.habbitica.impl.models.form.UserForm;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -16,4 +19,9 @@ public interface UserService {
     void removeTask(Long taskId, User user);
 
     void changeData(User user, MultipartFile file, String newName);
+
+    UsersPage search(Integer size, Integer page, String query, String sort, String direction);
+
+    UserDto getById(Long id);
+
 }

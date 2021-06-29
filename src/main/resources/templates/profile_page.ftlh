@@ -9,6 +9,9 @@
 <body>
 <h1>Профиль</h1>
 <h2>${user.username}</h2>
+
+<div class="container add_to_friends">
+    <p><a href="/friends/add/${user.getId()}" title="Add to friends">Add to friends</a>.</p>
 <img src="${user.path}" style="width:250px;height:250px" alt="${user.path}">
 <div class="container my_tasks">
     <p><a href="/profile/tasks" title="Мои задания">Мои задачи</a>.</p>

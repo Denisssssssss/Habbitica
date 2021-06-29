@@ -29,7 +29,7 @@ public class User implements Serializable {
     private String hashPassword;
     @Builder.Default
     private Long balance = 0L;
-    
+
     private String path;
 
     @Builder.Default
@@ -43,18 +43,6 @@ public class User implements Serializable {
     @Builder.Default
     @ManyToMany(mappedBy = "users")
     private List<Achievement> achievements = new ArrayList<>();
-
-    @ManyToMany
-    @JoinTable(name="subscription",
-            joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="subscriber_id", referencedColumnName = "id"))
-    private Set<User> subscribers;
-
-    @ManyToMany
-    @JoinTable(name="subscription",
-            joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="subscriber_id", referencedColumnName = "id"))
-    private Set<User> subscriptions;
 
     public enum Role {
         ADMIN, USER
