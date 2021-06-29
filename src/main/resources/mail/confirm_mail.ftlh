@@ -16,6 +16,6 @@
 <body>
 <h1>Ссылка на регистрацию:</h1>
 <img src="https://sf-tb-sg.ibytedtos.com/obj/eden-sg/uhtyvueh7nulogpoguhm/tiktok-icon2.png" alt="">
-<h2><a href="http://localhost:1337/confirm/${confirm_code}">Пройдите по ссылке</a></h2>
+<h2><a href="http://80.249.149.76/confirm/${confirm_code}">Пройдите по ссылке</a></h2>
 </body>
 </html>
