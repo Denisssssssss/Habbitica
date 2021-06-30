@@ -42,10 +42,10 @@ public class UserServiceImpl implements UserService {
     private ExecutorService executorService;
     private MailService mailService;
 
-    @Value("${images.path}")
+    @Value("${images.profile.path}")
     private String path;
 
-    @Value("${images.default}")
+    @Value("${images.profile.default}")
     private String defaultImage;
 
     @Autowired

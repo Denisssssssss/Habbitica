@@ -17,6 +17,7 @@ public class AchievementDto {
     private String category;
     private Long taskId;
     private Long reward;
+    private String path;
     private int count;
 
     public static AchievementDto from(Achievement achievement) {
@@ -28,6 +29,7 @@ public class AchievementDto {
                 .count(achievement.getCount())
                 .category(achievement.getCategory())
                 .reward(achievement.getReward())
+                .path(achievement.getPath())
                 .build();
     }
 
