@@ -2,6 +2,7 @@ package com.simbirsoft.habbitica.impl.controllers;
 
 import com.simbirsoft.habbitica.api.services.AchievementService;
 import com.simbirsoft.habbitica.api.services.TaskService;
+import com.simbirsoft.habbitica.api.services.TransactionService;
 import com.simbirsoft.habbitica.api.services.UserService;
 import com.simbirsoft.habbitica.impl.models.data.User;
 import com.simbirsoft.habbitica.impl.models.dto.UserDto;
@@ -28,14 +29,17 @@ public class ProfileController {
     private UserDetailsService userDetailsService;
     private UserService userService;
     private TaskService taskService;
+    private TransactionService transactionService;
 
     @Autowired
     public ProfileController(UserService userService,
                              TaskService taskService,
                              AchievementService achievementService,
+                             TransactionService transactionService,
                              @Qualifier("customUserDetailsService") UserDetailsService userDetailsService) {
         this.userService = userService;
         this.taskService = taskService;
+        this.transactionService = transactionService;
         this.achievementService = achievementService;
         this.userDetailsService = userDetailsService;
     }
@@ -139,5 +143,17 @@ public class ProfileController {
             return "my_profile_page";
         } else
             return "profile_page";
+    }
+
+    @GetMapping("/profile/transactions")
+    public String getUserTransactions(@AuthenticationPrincipal UserDetailsImpl userDetails,
+                                      Model model) {
+
+        userDetails = (UserDetailsImpl) userDetailsService
+                .loadUserByUsername(userDetails.getUsername());
+        model.addAttribute("transactions",
+                transactionService.findAllByUserId(userDetails.getUser().getId()));
+
+        return "user_transactions_page";
     }
 }

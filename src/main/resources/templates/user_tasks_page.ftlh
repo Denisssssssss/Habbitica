@@ -12,6 +12,9 @@
 </head>
 <body>
 <h1>Мои задачи</h1>
+<h1>
+    <p><a href="/profile">Профиль</a></p>
+</h1>
 <#list tasks as task>
     <form action="/profile/tasks/${task.id}" method="post">
         <h1>${task.title}</h1>
