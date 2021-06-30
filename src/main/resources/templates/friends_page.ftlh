@@ -1,6 +1,6 @@
 <#include "base.ftlh">
 <#import "spring.ftl" as spring>
-<#macro title>Friends</#macro>
+<#macro title>Мои друзья</#macro>
 <#macro head>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -12,7 +12,7 @@
 
 <body onload=>
 <#macro content>
-<h1>Friends</h1>
+<h1>Мои друзья</h1>
 <script>
     function renderTable(suggestions, table) {
         let innerHtml = '<tr>\n' +

@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet">
-
     <meta http-equiv="Content-type" content="text/html" charset="utf-8">
     <style>
         /*Обнуление*/
@@ -273,15 +272,16 @@
             <div class="container">
                 <div class="header__row">
                     <ul class="logo">
-                        <li class="logo__list"><a href="index.html">Habbitica</a></li>
+                        <li class="logo__list"><a href="/">Habbitica</a></li>
                     </ul>
                     <div class="menu">
                         <ul class="menu__list">
-                            <li class="menu__element"><a href="index.html">Главная</a></li>
+                            <li class="menu__element"><a href="/">Главная</a></li>
                             <li class="menu__element"><a href="/profile">Личный Кабинет</a></li>
                             <li class="menu__element"><a href="/shop">Кошелек</a></li>
                             <li class="menu__element"><a href="/achievements">Достижения</a></li>
                             <li class="menu__element"><a href="/friends">Друзья</a></li>
+                            <li class="menu__element"><a href="/signIn">Вход</a></li>
                         </ul>
                     </div>
                 </div>
@@ -293,6 +293,7 @@
     <@content></@content>
 
     <footer class="footer">
+        <#if first_footer??>
         <div class="first-footer">
             <div class="container">
                 <ul class="footer__list">
@@ -322,6 +323,7 @@
                 </ul>
             </div>
         </div>
+        </#if>
         <div class="second-footer">Copyright ©2021 All rights reserved</div>
     </footer>
 

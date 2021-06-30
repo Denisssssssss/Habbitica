@@ -256,6 +256,12 @@
             text-align: center;
             padding: 15px;
         }
+
+        .signIn {
+            text-align: center;
+            font-size: 150%;
+        }
+
     </style>
 </head>
 <body>
@@ -267,15 +273,16 @@
             <div class="container">
                 <div class="header__row">
                     <ul class="logo">
-                        <li class="logo__list"><a href="index.html">Habbitica</a></li>
+                        <li class="logo__list"><a href="/">Habbitica</a></li>
                     </ul>
                     <div class="menu">
                         <ul class="menu__list">
-                            <li class="menu__element"><a href="index.html">Главная</a></li>
+                            <li class="menu__element"><a href="/">Главная</a></li>
                             <li class="menu__element"><a href="/profile">Личный Кабинет</a></li>
                             <li class="menu__element"><a href="/shop">Кошелек</a></li>
                             <li class="menu__element"><a href="/achievements">Достижения</a></li>
                             <li class="menu__element"><a href="/friends">Друзья</a></li>
+                            <li class="menu__element"><a href="/signIn">Вход</a></li>
                         </ul>
                     </div>
                 </div>
@@ -284,55 +291,62 @@
 
     </div>
 
-    <@spring.bind "userForm"/>
-    <form method="post" action="/signIn">
-        <#--    <input type='hidden' value='${_csrf.token}' name='${_csrf.parameterName}'/>-->
-        <div class="container">
-            <p>Make sure your account is confirmed!</p>
-            <label>Email</label>
-            <@spring.formInput "userForm.email"/>
-            <label>Password</label>
-            <@spring.formPasswordInput "userForm.password"/>
-            <input type="submit" value="Enter">
-        </div>
-        <div class="container signin">
-            <p>Doesn't have an account yet? <a href="/signUp">Sign up</a>.</p>
-        </div>
-    </form>
-
-    <footer class="footer">
-        <div class="first-footer">
-            <div class="container">
-                <ul class="footer__list">
-                    <li class="footer__elements">
-                        <div class="footer__elements-title">О Нас</div>
-                        <div class="footer__elements-logo">
-                            <div class="footer__elements-logo-name">Habbitica</div>
-                        </div>
-                        <p class="footer__elements-text">*Описание проекта*</p>
-                    </li>
-                    <li class="footer__elements">
-                        <div class="footer__elements-title">Контакты</div>
-                        <p class="footer__elements-description">Есть вопрос? Свяжитесь с нами через социальные сети или
-                            почту!</p>
-                        <div class="footer__contacts">
-                            <div class="footer__contacts-address">Казань, Россия</div>
-                            <ul class="footer__links">
-                                <li class="footer__links-element"><a href=""><img src="../img/vk.png" alt=""></a></li>
-                                <li class="footer__links-element"><a href=""><img src="../img/instagram.png" alt=""></a>
-                                </li>
-                                <li class="footer__links-element"><a href=""><img src="../img/twitter (1).png"
-                                                                                  alt=""></a></li>
-                                <li class="footer__links-element"><a href=""><img src="../static/img/facebook (1).png" alt=""></a>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+    <div class="signIn">
+        <@spring.bind "userForm"/>
+        <form method="post" action="/signIn">
+            <#--    <input type='hidden' value='${_csrf.token}' name='${_csrf.parameterName}'/>-->
+            <div class="email">
+                <input
+                <@spring.formInput "userForm.email" 'placeholder="Почта"'/>
             </div>
-        </div>
+            <div class="password">
+                <@spring.formPasswordInput "userForm.password" 'placeholder="Пароль"'/>
+            </div>
+            <div class="signInButton">
+                <input type="submit" value="Войти">
+            </div>
+            <div class="signInAccount">
+                <p>Еще не зарегистрированы? <a href="/signUp">Регистрация</a>.</p>
+            </div>
+        </form>
+    </div>
+    <footer class="footer">
+        <#if first_footer??>
+            <div class="first-footer">
+                <div class="container">
+                    <ul class="footer__list">
+                        <li class="footer__elements">
+                            <div class="footer__elements-title">О Нас</div>
+                            <div class="footer__elements-logo">
+                                <div class="footer__elements-logo-name">Habbitica</div>
+                            </div>
+                            <p class="footer__elements-text">*Описание проекта*</p>
+                        </li>
+                        <li class="footer__elements">
+                            <div class="footer__elements-title">Контакты</div>
+                            <p class="footer__elements-description">Есть вопрос? Свяжитесь с нами через социальные сети
+                                или
+                                почту!</p>
+                            <div class="footer__contacts">
+                                <div class="footer__contacts-address">Казань, Россия</div>
+                                <ul class="footer__links">
+                                    <li class="footer__links-element"><a href=""><img src="../img/vk.png" alt=""></a>
+                                    </li>
+                                    <li class="footer__links-element"><a href=""><img src="../img/instagram.png" alt=""></a>
+                                    </li>
+                                    <li class="footer__links-element"><a href=""><img src="../img/twitter (1).png"
+                                                                                      alt=""></a></li>
+                                    <li class="footer__links-element"><a href=""><img
+                                                    src="../static/img/facebook (1).png" alt=""></a>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </#if>
         <div class="second-footer">Copyright ©2021 All rights reserved</div>
     </footer>
-
 </div>
 </body>
 </html>

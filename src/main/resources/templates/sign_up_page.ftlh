@@ -265,15 +265,17 @@
             <div class="container">
                 <div class="header__row">
                     <ul class="logo">
-                        <li class="logo__list"><a href="index.html">Habbitica</a></li>
+
+                        <li class="logo__list"><a href="/">Habbitica</a></li>
                     </ul>
                     <div class="menu">
                         <ul class="menu__list">
-                            <li class="menu__element"><a href="index.html">Главная</a></li>
+                            <li class="menu__element"><a href="/">Главная</a></li>
                             <li class="menu__element"><a href="/profile">Личный Кабинет</a></li>
                             <li class="menu__element"><a href="/shop">Кошелек</a></li>
                             <li class="menu__element"><a href="/achievements">Достижения</a></li>
                             <li class="menu__element"><a href="/friends">Друзья</a></li>
+                            <li class="menu__element"><a href="/signIn">Вход</a></li>
                         </ul>
                     </div>
                 </div>
@@ -311,6 +313,7 @@
     </div>
 </form>
     <footer class="footer">
+        <#if first_footer??>
         <div class="first-footer">
             <div class="container">
                 <ul class="footer__list">
@@ -341,9 +344,9 @@
                 </ul>
             </div>
         </div>
+        </#if>
         <div class="second-footer">Copyright ©2021 All rights reserved</div>
     </footer>
-
 </div>
 </body>
 </html>
