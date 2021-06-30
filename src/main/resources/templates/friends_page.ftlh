@@ -1,14 +1,18 @@
-<html>
-<head>
-    <title>Friends</title>
+<#include "base.ftlh">
+<#import "spring.ftl" as spring>
+<#macro title>Мои друзья</#macro>
+<#macro head>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
             crossorigin="anonymous">
     </script>
     <link rel="stylesheet" , href="../css/style.css">
+</#macro>
 </head>
+
 <body onload=>
-<h1>Friends</h1>
+<#macro content>
+<h1>Мои друзья</h1>
 <script>
     function renderTable(suggestions, table) {
         let innerHtml = '<tr>\n' +
@@ -82,5 +86,4 @@
 </div>
 <p><a href="/friends/sent">Pending requests</a></p>
 <p><a href="/friends/incoming">Incoming requests</a></p>
-</body>
-</html>
+</#macro>

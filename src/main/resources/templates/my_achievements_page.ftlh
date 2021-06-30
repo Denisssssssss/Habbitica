@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<#include "base.ftlh">
 <#import "spring.ftl" as spring>
-<head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-    <style>
-        h1 {
-            font-size: 150%;
-        }
-    </style>
-</head>
-<body>
+<#macro title>Profile</#macro>
+<#macro content>
 <h1>Мои достижения</h1>
 <table>
     <#list achievements as ach>
@@ -24,5 +15,4 @@
 <div class="back">
     <a href="/profile">Профиль</a>
 </div>
-</body>
-</html>
+</#macro>

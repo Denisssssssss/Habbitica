@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<#include "base.ftlh">
 <#import "spring.ftl" as spring>
-<head>
-    <meta charset="UTF-8">
-    <title>Транзакции</title>
-    <style>
-        h1 {
-            font-size: 150%;
-        }
-    </style>
-</head>
-<body>
+<#macro title>Транзакции!</#macro>
+<#macro content>
 <h1>Транзакции</h1>
 <p><a href="/profile">Профиль</a></p>
 <table>
@@ -22,5 +13,4 @@
         </tr>
     </#list>
 </table>
-</body>
-</html>
+</#macro>
