@@ -24,7 +24,7 @@ public class ImageController {
     public ResponseEntity<Resource> getImage(@PathVariable("image-name") String imgName) {
 
         try {
-            String dir = System.getProperty("user.dir") + path;
+            String dir = "/home/developer/Habbitica" + path;
             InputStream is = new FileInputStream(dir + imgName);
             byte[] bytes = IOUtils.toByteArray(is);
             ByteArrayResource byteArrayResource = new ByteArrayResource(bytes);
