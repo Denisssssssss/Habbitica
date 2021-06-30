@@ -22,7 +22,7 @@ public class ImageControllerProdImpl {
     @Value("${images.profile.path}")
     private String PROFILE_IMAGES_DIRECTORY;
 
-    @Value("${images.achievements.path")
+    @Value("${images.achievements.path}")
     private String ACHIEVEMENTS_IMAGES_DIRECTORY;
 
     @GetMapping(value = "/data/img/photos/{image-name}")
