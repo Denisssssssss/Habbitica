@@ -261,6 +261,7 @@
             text-align: center;
             font-size: 150%;
         }
+
     </style>
 </head>
 <body>
