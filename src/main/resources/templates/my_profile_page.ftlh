@@ -10,6 +10,12 @@
 <h1>Profile</h1>
 <h2>${user.username}</h2>
 <img src="${user.path}" style="width:250px;height:250px" alt="${user.path}">
+<div class="container transactions">
+    <p><a href="/profile/transactions" title="Мои транзакции">Транзакции</a>.</p>
+</div>
+<div class="container shop">
+    <p><a href="/shop" title="Магазин">Магазин</a>.</p>
+</div>
 <div class="container my_tasks">
     <p><a href="/profile/tasks" title="Мои задания">Мои задачи</a>.</p>
 </div>

@@ -2,6 +2,7 @@ package com.simbirsoft.habbitica.impl.controllers;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -14,8 +15,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+@Profile("local")
 @RestController
-public class ImageController {
+public class ImageControllerLocalImpl {
 
     @Value("${images.path}")
     private String path;
@@ -24,7 +26,7 @@ public class ImageController {
     public ResponseEntity<Resource> getImage(@PathVariable("image-name") String imgName) {
 
         try {
-            String dir = "/home/developer/Habbitica" + path;
+            String dir = System.getProperty("user.dir") + path;
             InputStream is = new FileInputStream(dir + imgName);
             byte[] bytes = IOUtils.toByteArray(is);
             ByteArrayResource byteArrayResource = new ByteArrayResource(bytes);

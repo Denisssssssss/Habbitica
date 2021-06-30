@@ -1,15 +1,9 @@
 package com.simbirsoft.habbitica.impl.services;
 
-import com.simbirsoft.habbitica.api.repositories.AchievementRepository;
-import com.simbirsoft.habbitica.api.repositories.ConfirmUserRepository;
-import com.simbirsoft.habbitica.api.repositories.TaskRepository;
-import com.simbirsoft.habbitica.api.repositories.UserRepository;
+import com.simbirsoft.habbitica.api.repositories.*;
 import com.simbirsoft.habbitica.api.services.MailService;
 import com.simbirsoft.habbitica.api.services.UserService;
-import com.simbirsoft.habbitica.impl.models.data.Achievement;
-import com.simbirsoft.habbitica.impl.models.data.ConfirmUser;
-import com.simbirsoft.habbitica.impl.models.data.Task;
-import com.simbirsoft.habbitica.impl.models.data.User;
+import com.simbirsoft.habbitica.impl.models.data.*;
 import com.simbirsoft.habbitica.impl.models.dto.UserDto;
 import com.simbirsoft.habbitica.impl.models.dto.UsersPage;
 import com.simbirsoft.habbitica.impl.models.form.UserForm;
@@ -27,6 +21,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -41,6 +37,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private TaskRepository taskRepository;
     private ConfirmUserRepository confirmUserRepository;
+    private TransactionRepository transactionRepository;
     private PasswordEncoder passwordEncoder;
     private ExecutorService executorService;
     private MailService mailService;
@@ -57,12 +54,15 @@ public class UserServiceImpl implements UserService {
                            PasswordEncoder passwordEncoder,
                            AchievementRepository achievementRepository,
                            ConfirmUserRepository confirmUserRepository,
+                           TransactionRepository transactionRepository,
                            ExecutorService executorService,
                            MailService mailService) {
         this.userRepository = userRepository;
         this.taskRepository = taskRepository;
         this.confirmUserRepository = confirmUserRepository;
+        this.achievementRepository = achievementRepository;
         this.executorService = executorService;
+        this.transactionRepository = transactionRepository;
         this.mailService = mailService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -148,10 +148,26 @@ public class UserServiceImpl implements UserService {
         if (achievement != null) {
             user.getAchievements().add(achievement);
             achievement.getUsers().add(user);
+            achievementRepository.save(achievement);
+            user.increaseBalance(achievement.getReward());
+            transactionRepository.save(Transaction.builder()
+                    .date(Date.from(Instant.now()))
+                    .userId(user.getId())
+                    .value(achievement.getReward())
+                    .target(Transaction.Target.ДОСТИЖЕНИЕ)
+                    .build()
+            );
         }
         user.getTasks().removeIf(x -> x.getId().equals(taskId));
         task.getUsers().removeIf(x -> x.getId().equals(user.getId()));
         user.increaseBalance(task.getReward());
+        transactionRepository.save(Transaction.builder()
+                .date(Date.from(Instant.now()))
+                .userId(user.getId())
+                .value(task.getReward())
+                .target(Transaction.Target.ЗАДАЧА)
+                .build()
+        );
         taskRepository.save(task);
         userRepository.save(user);
     }
