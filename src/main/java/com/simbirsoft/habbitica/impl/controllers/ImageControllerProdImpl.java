@@ -19,14 +19,27 @@ import java.io.InputStream;
 @RestController
 public class ImageControllerProdImpl {
 
-    @Value("${images.path}")
-    private String path;
+    @Value("${images.profile.path}")
+    private String PROFILE_IMAGES_DIRECTORY;
+
+    @Value("${images.achievements.path")
+    private String ACHIEVEMENTS_IMAGES_DIRECTORY;
 
     @GetMapping(value = "/data/img/photos/{image-name}")
-    public ResponseEntity<Resource> getImage(@PathVariable("image-name") String imgName) {
+    public ResponseEntity<Resource> getProfileImage(@PathVariable("image-name") String imgName) {
 
+        return loadImage(imgName, PROFILE_IMAGES_DIRECTORY);
+    }
+
+    @GetMapping(value = "/data/img/achievements/{image-name}")
+    public ResponseEntity<Resource> getAchievementImage(@PathVariable("image-name") String imgName) {
+
+        return loadImage(imgName, ACHIEVEMENTS_IMAGES_DIRECTORY);
+    }
+
+    public ResponseEntity<Resource> loadImage(String imgName, String directory) {
         try {
-            String dir = "/home/developer/Habbitica" + path;
+            String dir = "/home/developer/Habbitica" + directory;
             InputStream is = new FileInputStream(dir + imgName);
             byte[] bytes = IOUtils.toByteArray(is);
             ByteArrayResource byteArrayResource = new ByteArrayResource(bytes);
