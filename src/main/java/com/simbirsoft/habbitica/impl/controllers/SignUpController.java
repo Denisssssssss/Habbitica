@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.Objects;
@@ -23,9 +24,17 @@ public class SignUpController {
     }
 
     @GetMapping("/signUp")
-    public String getSignUpPage(Model model) {
+    public String getSignUpPage(Model model,
+                                @RequestParam(required = false) String f,
+                                @RequestParam(required = false) String p) {
 
         model.addAttribute("userForm", new UserForm());
+        if (f != null && f.equals("true")) {
+            model.addAttribute("invalid_email", 0);
+        }
+        if (p != null && p.equals("true")) {
+            model.addAttribute("invalid_password", 0);
+        }
 
         return "sign_up_page";
     }
@@ -44,7 +53,13 @@ public class SignUpController {
             });
             model.addAttribute("userForm", form);
         } else {
-            userService.save(form);
+            try {
+                userService.save(form);
+            } catch (IllegalArgumentException e) {
+                return "redirect:/signUp?f=true";
+            } catch (IllegalStateException e) {
+                return "redirect:/signUp?p=true";
+            }
         }
 
         return "redirect:/signIn";
