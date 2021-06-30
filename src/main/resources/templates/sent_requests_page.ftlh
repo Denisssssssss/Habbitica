@@ -1,13 +1,14 @@
-<html>
-<head>
-    <title>Sent requests</title>
+<#include "base.ftlh">
+<#import "spring.ftl" as spring>
+<#macro title>Sent requests</#macro>
+<#macro head>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
             crossorigin="anonymous">
     </script>
     <link rel="stylesheet" , href="../css/style.css">
-</head>
-<body>
+</#macro>
+<#macro content>
 <h1>Sent requests</h1>
 
 <div>
@@ -27,5 +28,4 @@
 </div>
 <p><a href="/friends/incoming">Incoming requests</a></p>
 <p><a href="/friends">Friends</a></p>
-</body>
-</html>
+</#macro>

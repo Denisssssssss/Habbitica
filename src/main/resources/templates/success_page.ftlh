@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Success!</title>
-</head>
-<body>
+<#include "base.ftlh">
+<#import "spring.ftl" as spring>
+<#macro title>Success!</#macro>
+<#macro content>
 Ваш аккаунт подтвержден!
 <a href="/signIn">Войти</a>
-</body>
-</html>
+</#macro>

@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<#include "base.ftlh">
 <#import "spring.ftl" as spring>
-<head>
-    <meta charset="UTF-8">
-    <title>Задачи</title>
-    <style>
-        h1 {
-            font-size: 150%;
-        }
-    </style>
-</head>
-<body>
+<#macro title>Task</#macro>
+<#macro content>
+
 <h1>Задачи</h1>
 <p><a href="/profile">Профиль</a></p>
 <#list tasks as task>
@@ -30,5 +22,4 @@
 <#if authority == 0>
     <p><a href="/tasks/add">Добавить задачи</a></p>
 </#if>
-</body>
-</html>
+</#macro>

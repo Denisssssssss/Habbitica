@@ -1,14 +1,15 @@
+<!DOCTYPE html>
 <html>
-<#import "spring.ftl" as spring>
+
 <head>
-    <title>Sign up</title>
+
+    <title><@title></@title></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet">
 
     <meta http-equiv="Content-type" content="text/html" charset="utf-8">
-
     <style>
         /*Обнуление*/
         * {
@@ -19,6 +20,9 @@
 
         *, *:before, *:after {
             box-sizing: border-box;
+        }
+        h1 {
+            font-size: 150%;
         }
 
         :focus, :active {
@@ -142,6 +146,7 @@
         }
 
 
+
         .footer {
             position: absolute;
             bottom: 0;
@@ -254,9 +259,12 @@
             text-align: center;
             padding: 15px;
         }
+
     </style>
 </head>
+
 <body>
+
 <div class="wrapper">
 
     <div class="content">
@@ -281,35 +289,9 @@
         </div>
 
     </div>
-<@spring.bind "userForm"/>
-<form method="post" action="/signUp">
-    <#--    <input type='hidden' value='${_csrf.token}' name='${_csrf.parameterName}'/>-->
-    <div class="container">
-        <p>Please fill in this form to create an account</p>
 
-        <label>Email</label>
-        <@spring.formInput "userForm.email"/>
+    <@content></@content>
 
-        <label>Password</label>
-        <@spring.formPasswordInput "userForm.password"/>
-
-        <label>Username</label>
-        <@spring.formInput "userForm.username"/>
-
-        <#if invalid_email??>
-            Email занят
-        </#if>
-
-        <#if invalid_password??>
-            Слабый пароль
-        </#if>
-
-        <input type="submit" value="Enter">
-    </div>
-    <div class="container signin">
-        <p>Уже есть аккаунт? <a href="/signIn">Войти</a>.</p>
-    </div>
-</form>
     <footer class="footer">
         <div class="first-footer">
             <div class="container">
@@ -333,8 +315,7 @@
                                 </li>
                                 <li class="footer__links-element"><a href=""><img src="../img/twitter (1).png"
                                                                                   alt=""></a></li>
-                                <li class="footer__links-element"><a href=""><img src="../static/img/facebook (1).png"
-                                                                                  alt=""></a>
+                                <li class="footer__links-element"><a href=""><img src="../img/facebook (1).png" alt=""></a>
                             </ul>
                         </div>
                     </li>
@@ -345,5 +326,7 @@
     </footer>
 
 </div>
+
 </body>
+
 </html>
