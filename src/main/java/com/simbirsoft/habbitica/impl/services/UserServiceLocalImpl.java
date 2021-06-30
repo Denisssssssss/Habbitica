@@ -9,6 +9,7 @@ import com.simbirsoft.habbitica.impl.models.dto.UsersPage;
 import com.simbirsoft.habbitica.impl.models.form.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -30,8 +31,9 @@ import java.util.stream.Collectors;
 
 import static com.simbirsoft.habbitica.impl.models.dto.UserDto.from;
 
+@Profile("local")
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceLocalImpl implements UserService {
 
     private AchievementRepository achievementRepository;
     private UserRepository userRepository;
@@ -49,14 +51,14 @@ public class UserServiceImpl implements UserService {
     private String defaultImage;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository,
-                           TaskRepository taskRepository,
-                           PasswordEncoder passwordEncoder,
-                           AchievementRepository achievementRepository,
-                           ConfirmUserRepository confirmUserRepository,
-                           TransactionRepository transactionRepository,
-                           ExecutorService executorService,
-                           MailService mailService) {
+    public UserServiceLocalImpl(UserRepository userRepository,
+                                TaskRepository taskRepository,
+                                PasswordEncoder passwordEncoder,
+                                AchievementRepository achievementRepository,
+                                ConfirmUserRepository confirmUserRepository,
+                                TransactionRepository transactionRepository,
+                                ExecutorService executorService,
+                                MailService mailService) {
         this.userRepository = userRepository;
         this.taskRepository = taskRepository;
         this.confirmUserRepository = confirmUserRepository;
@@ -230,6 +232,4 @@ public class UserServiceImpl implements UserService {
                 .users(UserDto.from(usersPage.getContent()))
                 .build();
     }
-
-
 }
