@@ -69,6 +69,14 @@ public class UserServiceImpl implements UserService {
 
     public UserDto save(UserForm userForm) {
 
+        userForm.setEmail(userForm.getEmail().toLowerCase());
+        if (userForm.getPassword().length() < 6 || userForm.getPassword().length() > 20) {
+            throw new IllegalStateException("Invalid password");
+        }
+        if (userRepository.findByEmail(userForm.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("User with specified email already exists");
+        }
+
         User user = User.builder()
                 .email(userForm.getEmail())
                 .hashPassword(passwordEncoder.encode(userForm.getPassword()))

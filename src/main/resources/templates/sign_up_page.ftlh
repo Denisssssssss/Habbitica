@@ -19,6 +19,14 @@
         <label>Username</label>
         <@spring.formInput "userForm.username"/>
 
+        <#if invalid_email??>
+            Email занят
+        </#if>
+
+        <#if invalid_password??>
+            Слабый пароль
+        </#if>
+
         <input type="submit" value="Enter">
     </div>
     <div class="container signin">
