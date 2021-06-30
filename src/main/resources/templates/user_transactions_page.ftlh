@@ -13,10 +13,14 @@
 <body>
 <h1>Транзакции</h1>
 <p><a href="/profile">Профиль</a></p>
-<#list transactions as transaction>
-    <p>${transaction.date}</p>
-    <p>${transaction.target}</p>
-    <p>${transaction.value}</p>
-</#list>
+<table>
+    <#list transactions as transaction>
+        <tr>
+            <td>${transaction.date}</td>
+            <td>${transaction.target}</td>
+            <td>${transaction.value}</td>
+        </tr>
+    </#list>
+</table>
 </body>
 </html>
