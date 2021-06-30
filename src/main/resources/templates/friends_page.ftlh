@@ -2,7 +2,7 @@
 <#import "spring.ftl" as spring>
 <#macro title>Мои друзья</#macro>
 <#macro head>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
             crossorigin="anonymous">
     </script>
@@ -13,6 +13,9 @@
 <body onload=>
 <#macro content>
 <h1>Мои друзья</h1>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+
+</script>
 <script>
     function renderTable(suggestions, table) {
         let innerHtml = '<tr>\n' +
@@ -20,19 +23,24 @@
             '</tr>';
         for (let i = 0; i < suggestions.length; i++) {
             innerHtml += '<tr>';
-            innerHtml += '<td><p>' + suggestions[i]['id'] + suggestions[i]['username'] + '</p></td>';
+            innerHtml += '<td><p><a href=/profile/' + suggestions[i]['id'] + '>' + suggestions[i]['username'] + '</a></p></td>';
             innerHtml += '</tr>'
         }
 
         table.html(innerHtml);
     }
 
-    function search(username) {
+    function test() {
+        alert("func")
+    }
+
+    function search() {
+        var query = document.getElementById('username').value;
         $.ajax({
                 type: "GET",
                 url: "/friends/search",
                 success: function (response) {
-                    renderTable(response.friends, $('#table'))
+                    renderTable(response.users, $('#table'))
                 },
                 error: function (response) {
                     console.log(response)
@@ -42,7 +50,7 @@
                 data: {
                     page: 0,
                     size: 100,
-                    q: username
+                    q: query
                 }
             }
         )
@@ -52,7 +60,7 @@
 </script>
 <div>
     <input type="text" id="username">
-    <button onclick="search($('#username').val())">Search</button>
+    <button onclick="search()">Search</button>
 </div>
 <div>
     <table id="friends_table">
