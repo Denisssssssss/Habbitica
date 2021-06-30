@@ -30,6 +30,8 @@ public class ProductController {
     public String getShopPage(@AuthenticationPrincipal UserDetailsImpl userDetails,
                               Model model,
                               @RequestParam(required = false) Long id) {
+        userDetails = (UserDetailsImpl) userDetailsService.
+                loadUserByUsername(userDetails.getUsername());
         model.addAttribute("user", userDetails.getUser());
         model.addAttribute("products", productService.findAll());
         if (id != null) {
