@@ -21,6 +21,7 @@ public class Transaction {
     private Long userId;
     private Date date;
     private Long value;
+    private String title;
 
     @Enumerated(value = EnumType.STRING)
     private Target target;

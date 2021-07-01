@@ -53,6 +53,7 @@ public class ProductServiceImpl implements ProductService {
                 .userId(user.getId())
                 .date(Date.from(Instant.now()))
                 .value(product.getPrice())
+                .title(product.getTitle())
                 .target(Transaction.Target.ТОВАР)
                 .build()
         );

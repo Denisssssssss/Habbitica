@@ -156,6 +156,7 @@ public class UserServiceProdImpl implements UserService {
                     .date(Date.from(Instant.now()))
                     .userId(user.getId())
                     .value(achievement.getReward())
+                    .title(achievement.getTitle())
                     .target(Transaction.Target.ДОСТИЖЕНИЕ)
                     .build()
             );
@@ -167,6 +168,7 @@ public class UserServiceProdImpl implements UserService {
                 .date(Date.from(Instant.now()))
                 .userId(user.getId())
                 .value(task.getReward())
+                .title(task.getTitle())
                 .target(Transaction.Target.ЗАДАЧА)
                 .build()
         );
