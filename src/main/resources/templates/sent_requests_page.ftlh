@@ -105,7 +105,7 @@
                     </div>
                     <div class="col-6">
                         <div class="label achievements">
-                            Входящие заявки
+                            Исходящие заявки
                         </div>
                         <div class="tasks-container">
                             <#list requests as r>

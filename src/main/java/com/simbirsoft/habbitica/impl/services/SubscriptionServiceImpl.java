@@ -116,7 +116,6 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
         banList.addAll(new ArrayList<>(friends));
         list.removeAll(banList);
-
         return UserDto.from(list);
     }
 }

@@ -10,10 +10,10 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class UserForm {
 
-    @Email(message = "{errors.incorrect.email}")
+    @Email(message = "Неверный email")
     private String email;
-    @NotBlank(message = "Invalid username")
+    @NotBlank(message = "Неверный логин")
     private String username;
-    @NotBlank(message = "Invalid password")
+    @NotBlank(message = "Неверный пароль")
     private String password;
 }

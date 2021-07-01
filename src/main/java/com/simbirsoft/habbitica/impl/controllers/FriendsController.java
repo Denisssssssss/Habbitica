@@ -9,10 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class FriendsController {
@@ -58,12 +55,13 @@ public class FriendsController {
     }
 
     @ResponseBody
-    @GetMapping("friends/search")
+    @PostMapping("friends/search")
     public ResponseEntity<UsersPage> search(@RequestParam("size") Integer size,
                                             @RequestParam("page") Integer page,
                                             @RequestParam(value = "q", required = false) String query,
                                             @RequestParam(value = "sort", required = false) String sort,
                                             @RequestParam(value = "dir", required = false) String direction) {
+        System.out.println(userService.search(size, page, query, sort, direction));
         return ResponseEntity.ok(userService.search(size, page, query, sort, direction));
     }
 }

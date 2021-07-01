@@ -311,16 +311,7 @@
                                 почту!</p>
                             <div class="footer__contacts">
                                 <div class="footer__contacts-address">Казань, Россия</div>
-                                <ul class="footer__links">
-                                    <li class="footer__links-element"><a href=""><img src="../img/vk.png" alt=""></a>
-                                    </li>
-                                    <li class="footer__links-element"><a href=""><img src="../img/instagram.png" alt=""></a>
-                                    </li>
-                                    <li class="footer__links-element"><a href=""><img src="../img/twitter (1).png"
-                                                                                      alt=""></a></li>
-                                    <li class="footer__links-element"><a href=""><img src="../img/facebook (1).png"
-                                                                                      alt=""></a>
-                                </ul>
+                                <div class="footer__contacts-address">habbitica@gmail.com</div>
                             </div>
                         </li>
                     </ul>

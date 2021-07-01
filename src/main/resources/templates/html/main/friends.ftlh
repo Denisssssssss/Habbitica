@@ -124,10 +124,9 @@
     function search() {
         var query = document.getElementById('find-user-input').value;
         $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "/friends/search",
                 success: function (response) {
-                    $('#suggestions-list').empty()
                     for (let i = 0; i < response.users.length; i++) {
                         console.log(response.users[i]['username'])
                         $('#suggestions-list')
@@ -191,7 +190,7 @@
                     <input name="login_or_name" id="find-user-input" type="text" class="form-control"
                            placeholder="Find someone..." aria-describedby="basic-addon1">
                 </div>
-                <button id="find-user-button" type="submit" onclick="search()">
+                <button id="find-user-button" type="button" onclick="search().preventDefault()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                          class="bi bi-search" viewBox="0 0 16 16">
                         <path

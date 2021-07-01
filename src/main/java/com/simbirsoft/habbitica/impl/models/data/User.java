@@ -67,7 +67,7 @@ public class User implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        return this.getId() == ((User)obj).getId();
     }
 
     @Override
