@@ -265,6 +265,7 @@
             <div class="container">
                 <div class="header__row">
                     <ul class="logo">
+
                         <li class="logo__list"><a href="/">Habbitica</a></li>
                     </ul>
                     <div class="menu">
@@ -346,7 +347,6 @@
         </#if>
         <div class="second-footer">Copyright ©2021 All rights reserved</div>
     </footer>
-
 </div>
 </body>
 </html>
