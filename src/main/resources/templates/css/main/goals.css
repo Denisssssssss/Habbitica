@@ -1,0 +1,43 @@
+.label {
+    width: 100%;
+    font-size: xx-large;
+    margin-bottom: 1em;
+    text-align: center;
+
+}
+
+.achievement-image {
+    width: 4em;
+    height: 4em;
+}
+
+.achievement-image img{
+    height: inherit;
+    width: inherit;
+    object-fit: cover;
+}
+
+.achievement-name {
+    width: 8em;
+}
+
+.achievement-description {
+    width: 20em;
+}
+
+.achievement-reward {
+    width: 6em;
+}
+
+.label.achievement-categories {
+    margin-top: 2em;
+}
+
+.categories {
+    text-align: center;
+    font-size: x-large;
+}
+
+.categories a {
+    text-decoration: none;
+}

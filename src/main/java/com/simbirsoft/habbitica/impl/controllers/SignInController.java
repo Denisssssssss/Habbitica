@@ -22,6 +22,6 @@ public class SignInController {
 
         model.addAttribute("userForm", new UserForm());
 
-        return "sign_in_page";
+        return "html/auth/signin";
     }
 }

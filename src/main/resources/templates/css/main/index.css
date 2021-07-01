@@ -1,0 +1,46 @@
+.user-info {
+    width: 14em;
+    background-color: white;
+    min-height: 18em;
+    display: inline-block;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.user-avatar {
+    height: 14em;
+    width: 12em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+}
+
+.user-name {
+    width: 12em;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 1.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.avatar {
+    width: inherit;
+    height: inherit;
+}
+
+.mini-nav-panel {
+    width: 9.4em;
+    min-height: 1em;
+    margin-top: 1.5em;
+    text-align: center;
+    font-size: x-large;
+}
+
+.mini-nav-option {
+    width: inherit;
+}
+
+.mini-nav-option a {
+    text-decoration: none;
+}
