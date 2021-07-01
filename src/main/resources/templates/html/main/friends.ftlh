@@ -127,6 +127,7 @@
                 type: "POST",
                 url: "/friends/search",
                 success: function (response) {
+                    $('#suggestions-list').empty()
                     for (let i = 0; i < response.users.length; i++) {
                         console.log(response.users[i]['username'])
                         $('#suggestions-list')

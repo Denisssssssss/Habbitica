@@ -284,7 +284,7 @@
                             <#if user??>
                                 <li class="menu__element"><a href="/signIn">Выход</a></li>
                             <#else>
-                                <li class="menu__element"><a href="/signIn">Выход</a></li>
+                                <li class="menu__element"><a href="/signIn">Вход</a></li>
                             </#if>
                         </ul>
                     </div>
