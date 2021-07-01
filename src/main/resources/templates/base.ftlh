@@ -281,7 +281,11 @@
                             <li class="menu__element"><a href="/shop">Кошелек</a></li>
                             <li class="menu__element"><a href="/achievements">Достижения</a></li>
                             <li class="menu__element"><a href="/friends">Друзья</a></li>
-                            <li class="menu__element"><a href="/signIn">Вход</a></li>
+                            <#if user??>
+                            <li class="menu__element"><a href="/signIn">Выход</a></li>
+                            <#else>
+                            <li class="menu__element"><a href="/signIn">Выход</a></li>
+                            </#if>
                         </ul>
                     </div>
                 </div>
@@ -302,13 +306,11 @@
                             <div class="footer__elements-logo">
                                 <div class="footer__elements-logo-name">Habbitica</div>
                             </div>
-                            <p class="footer__elements-text">*Описание проекта*</p>
+                            <p class="footer__elements-text">Приложение, предназначенное для выработки новых полезных привычек с элементами геймификации.</p>
                         </li>
                         <li class="footer__elements">
                             <div class="footer__elements-title">Контакты</div>
-                            <p class="footer__elements-description">Есть вопрос? Свяжитесь с нами через социальные сети
-                                или
-                                почту!</p>
+                            <p class="footer__elements-description">Есть вопрос? Свяжитесь с нами через почту!</p>
                             <div class="footer__contacts">
                                 <div class="footer__contacts-address">Казань, Россия</div>
                                 <div class="footer__contacts-address">habbitica@gmail.com</div>

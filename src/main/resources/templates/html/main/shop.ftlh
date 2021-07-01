@@ -84,27 +84,30 @@
                 Баланс: ${user.balance}
             </div>
         </div>
-        <div class="products">
-            <div class="product-list">
-                <form class="product" action="/shop/${product.id}", method="post">
-                    <div class="product-name">
-                        ${product.title}
-                    </div>
-                    <div class="product-description">
-                        ${product.description}
-                        <div class="product-price">
-                            Цена: ${product.price}
-                        </div>
-                    </div>
-                    <#if forbidden_prod_id == ${product.id}>
-                        Недостаточно средств
-                    </#if>
-                    <div class="actions">
-                        <button type="submit" class="btn btn-primary buy-button">Купить</button>
-                    </div>
-                </form>
-            </div>
-            
+        <#if products??>
+            <div class="products">
+                <div class="product-list">
+                    <#list products as product>
+                        <form class="product" action="/shop/${product.id}", method="post">
+                            <div class="product-name">
+                                ${product.title}
+                            </div>
+                            <div class="product-description">
+                                ${product.description}
+                                <div class="product-price">
+                                    Цена: ${product.price}
+                                </div>
+                            </div>
+                            <#if forbidden_prod_id == product.id>
+                                Недостаточно средств
+                            </#if>
+                            <div class="actions">
+                                <button type="submit" class="btn btn-primary buy-button">Купить</button>
+                            </div>
+                        </#list>
+                    </form>
+                </div>
+            </#if>
         </div>
     </div>
 </body>

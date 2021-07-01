@@ -4,7 +4,9 @@ import com.simbirsoft.habbitica.api.services.AchievementService;
 import com.simbirsoft.habbitica.api.services.TaskService;
 import com.simbirsoft.habbitica.api.services.UserService;
 import com.simbirsoft.habbitica.impl.models.dto.AchievementDto;
+import com.simbirsoft.habbitica.impl.security.details.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +30,7 @@ public class AchievementController {
     }
 
     @GetMapping("/achievements")
-    public String getAchievements(Model model) {
+    public String getAchievements(@AuthenticationPrincipal UserDetailsImpl userDetails, Model model) {
 
         List<AchievementDto> achievements = achievementService.findAll();
         List<?> list = achievements.stream().map(AchievementDto::getCategory).distinct().collect(Collectors.toList());
@@ -36,12 +38,14 @@ public class AchievementController {
         model.addAttribute("achievements", achievements);
         model.addAttribute("size", list.size());
         model.addAttribute("categories", list);
+        model.addAttribute("user", userDetails.getUser());
 
         return "html/main/goals";
     }
 
     @GetMapping("/achievements/{category-name}")
     public String getAchievementsByCategory(@PathVariable("category-name") String name,
+                                            @AuthenticationPrincipal UserDetailsImpl userDetails,
                                             Model model) {
 
         List<AchievementDto> achievements = achievementService.findAll();
@@ -51,6 +55,8 @@ public class AchievementController {
         model.addAttribute("achievements", achievements);
         model.addAttribute("size", list.size());
         model.addAttribute("categories", list);
+        model.addAttribute("user", userDetails.getUser());
+
 
         return "html/main/goals";
     }

@@ -26,9 +26,9 @@ public class FriendsController {
     @GetMapping("/friends")
     public String getFriends(@AuthenticationPrincipal UserDetailsImpl userDetails,
                              Model model) {
-        System.out.println(subscriptionService.getFriends(userDetails.getUser()));
         model.addAttribute("friends", subscriptionService.getFriends(userDetails.getUser()));
         model.addAttribute("suggestions", subscriptionService.getSuggestions(userDetails.getUser()));
+        model.addAttribute("user", userDetails.getUser());
         return "html/main/friends";
     }
 
@@ -37,6 +37,7 @@ public class FriendsController {
                              @PathVariable("user-id") Long id,
                              Model model) {
         subscriptionService.addUserIntoSubscriptions(userDetails.getUser(), id);
+        model.addAttribute("user", userDetails.getUser());
         return "redirect:/friends";
     }
 
@@ -44,6 +45,7 @@ public class FriendsController {
     public String getIncomingRequests(@AuthenticationPrincipal UserDetailsImpl userDetails,
                              Model model) {
         model.addAttribute("requests", subscriptionService.getIncomingRequests(userDetails.getUser()));
+        model.addAttribute("user", userDetails.getUser());
         return "incoming_requests_page";
     }
 
@@ -51,6 +53,7 @@ public class FriendsController {
     public String getPendingRequests(@AuthenticationPrincipal UserDetailsImpl userDetails,
                                       Model model) {
         model.addAttribute("requests", subscriptionService.getPendingRequests(userDetails.getUser()));
+        model.addAttribute("user", userDetails.getUser());
         return "sent_requests_page";
     }
 

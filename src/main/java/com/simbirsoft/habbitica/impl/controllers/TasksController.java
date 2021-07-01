@@ -38,24 +38,27 @@ public class TasksController {
     }
 
     @GetMapping("/tasks")
-    public String getTasksPage(@AuthenticationPrincipal UserDetailsImpl usr, Model model) {
+    public String getTasksPage(@AuthenticationPrincipal UserDetailsImpl userDetails, Model model) {
 
         List<TaskDTO> tasks = taskService.findAllSorted();
-        User user = usr.getUser();
+        User user = userDetails.getUser();
         List<?> list = tasks.stream().map(TaskDTO::getCategory).distinct().collect(Collectors.toList());
         //0 - admin, 1 - user
         model.addAttribute("authority", user.getRole().equals(User.Role.ADMIN) ? 0 : 1);
         model.addAttribute("tasks", tasks);
         model.addAttribute("size", list.size());
         model.addAttribute("categories", list);
+        model.addAttribute("user", userDetails.getUser());
+
 
         return "html/main/tasks";
     }
 
     @GetMapping("/tasks/add")
-    public String getTasksUploadPage(Model model) {
+    public String getTasksUploadPage(@AuthenticationPrincipal UserDetailsImpl userDetails, Model model) {
 
         model.addAttribute("taskForm", new TaskForm());
+        model.addAttribute("user", userDetails.getUser());
 
         return "tasks_upload_page";
     }
@@ -100,6 +103,7 @@ public class TasksController {
         model.addAttribute("tasks", tasks);
         model.addAttribute("size", list.size());
         model.addAttribute("categories", list);
+        model.addAttribute("user", userDetails.getUser());
 
         return "html/main/tasks";
     }

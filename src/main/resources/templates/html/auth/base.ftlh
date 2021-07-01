@@ -302,22 +302,13 @@
                         <div class="footer__elements-logo">
                             <div class="footer__elements-logo-name">Habbitica</div>
                         </div>
-                        <p class="footer__elements-text">*Описание проекта*</p>
+                        <p class="footer__elements-text">Приложение, предназначенное для выработки новых полезных привычек с элементами геймификации.</p>
                     </li>
                     <li class="footer__elements">
                         <div class="footer__elements-title">Контакты</div>
-                        <p class="footer__elements-description">Есть вопрос? Свяжитесь с нами через социальные сети или
-                            почту!</p>
+                        <p class="footer__elements-description">Есть вопрос? Свяжитесь с нами через почту!</p>
                         <div class="footer__contacts">
                             <div class="footer__contacts-address">Казань, Россия</div>
-                            <ul class="footer__links">
-                                <li class="footer__links-element"><a href=""><img src="../img/vk.png" alt=""></a></li>
-                                <li class="footer__links-element"><a href=""><img src="../img/instagram.png" alt=""></a>
-                                </li>
-                                <li class="footer__links-element"><a href=""><img src="../img/twitter (1).png"
-                                                                                  alt=""></a></li>
-                                <li class="footer__links-element"><a href=""><img src="../img/facebook (1).png" alt=""></a>
-                            </ul>
                         </div>
                     </li>
                 </ul>

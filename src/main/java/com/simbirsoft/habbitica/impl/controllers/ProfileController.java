@@ -63,6 +63,7 @@ public class ProfileController {
 
         userDetails = (UserDetailsImpl) userDetailsService.loadUserByUsername(userDetails.getUsername());
         model.addAttribute("tasks", userDetails.getUser().getTasks());
+        model.addAttribute("user", userDetails.getUser());
 
         return "html/main/mytasks";
     }
@@ -72,6 +73,7 @@ public class ProfileController {
                                    Model model) {
 
         model.addAttribute("achievements", userDetails.getUser().getAchievements());
+        model.addAttribute("user", userDetails.getUser());
 
         return "html/main/mygoals";
     }
@@ -149,6 +151,8 @@ public class ProfileController {
                 .loadUserByUsername(userDetails.getUsername());
         model.addAttribute("transactions",
                 transactionService.findAllByUserId(userDetails.getUser().getId()));
+        model.addAttribute("user", userDetails.getUser());
+
 
         return "html/main/transactions";
     }
