@@ -13,7 +13,9 @@ public class RootController {
     public String root(@AuthenticationPrincipal UserDetailsImpl userDetails, Model model) {
 
         model.addAttribute("first_footer", 1);
-        model.addAttribute("user", userDetails.getUser());
+        if (userDetails != null) {
+            model.addAttribute("user", userDetails.getUser());
+        }
         return "index";
     }
 }
