@@ -1,0 +1,42 @@
+.tasks-container {
+    width: 100%;
+    min-height: 1em;
+    background-color: inherit;
+}
+
+.task {
+    width: inherit;
+    min-height: 3em;
+    background-color: #7bb3fd;
+    margin-bottom: 2em;
+}
+
+.task-option {
+    display: inline-flex;
+    margin-left: 1em;
+    margin-top: 0.3em;
+    text-align: center;
+}
+
+.task-category {
+    min-width: 6em;
+}
+
+.task-description {
+    min-width: 20em;
+}
+
+.task-reward {
+    min-width: 3.6em;
+}
+
+.label {
+    width: 100%;
+    font-size: xx-large;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.label a {
+    text-decoration: none;
+}
