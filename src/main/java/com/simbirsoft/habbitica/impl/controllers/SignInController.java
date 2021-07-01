@@ -21,7 +21,8 @@ public class SignInController {
     public String signIn(Model model) {
 
         model.addAttribute("userForm", new UserForm());
+        model.addAttribute("first_footer");
 
-        return "sign_in_page";
+        return "html/auth/signin";
     }
 }

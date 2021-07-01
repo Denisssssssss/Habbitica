@@ -29,6 +29,7 @@ public class SignUpController {
                                 @RequestParam(required = false) String p) {
 
         model.addAttribute("userForm", new UserForm());
+        model.addAttribute("first_footer");
         if (f != null && f.equals("true")) {
             model.addAttribute("invalid_email", 0);
         }
@@ -36,7 +37,7 @@ public class SignUpController {
             model.addAttribute("invalid_password", 0);
         }
 
-        return "sign_up_page";
+        return "html/auth/registration";
     }
 
     @PostMapping("/signUp")

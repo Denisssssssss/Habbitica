@@ -1,0 +1,49 @@
+body {
+    background-color: #e3efff;
+}
+
+nav {
+    font-size: larger;
+}
+
+div {
+    border-radius: 4px;
+}
+
+.container {
+    width: 80%;
+    margin-top: 4em;
+}
+
+.collapse.navbar-collapse {
+    margin-left: 10%;
+}
+
+.bg-primary {
+    background-color: #01307c !important;
+}
+
+.navbar-brand {
+    margin-left: 10.6%;
+    font-size: x-large;
+}
+
+.nav-item {
+    margin-left: 0.5em;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.second-footer {
+    border-radius: 0px;
+    background-color: #066cc2;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    padding: 15px;
+}

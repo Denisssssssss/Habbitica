@@ -37,7 +37,7 @@ public class AchievementController {
         model.addAttribute("size", list.size());
         model.addAttribute("categories", list);
 
-        return "all_achievements_page";
+        return "html/main/goals";
     }
 
     @GetMapping("/achievements/{category-name}")
@@ -52,6 +52,6 @@ public class AchievementController {
         model.addAttribute("size", list.size());
         model.addAttribute("categories", list);
 
-        return "all_achievements_page";
+        return "html/main/goals";
     }
 }
