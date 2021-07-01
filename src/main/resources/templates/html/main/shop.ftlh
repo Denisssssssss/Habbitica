@@ -94,9 +94,9 @@
                             </div>
                             <div class="product-description">
                                 ${product.description}
-                                <div class="product-price">
-                                    Цена: ${product.price}
-                                </div>
+                                    <div class="product-price">
+                                        Цена: ${product.price}
+                                    </div>
                             </div>
                             <#if forbidden_prod_id??>
                                 <#if forbidden_prod_id == product.id>
@@ -106,8 +106,8 @@
                             <div class="actions">
                                 <button type="submit" class="btn btn-primary buy-button">Купить</button>
                             </div>
-                        </#list>
-                    </form>
+                        </form>
+                    </#list>
                 </div>
             </#if>
         </div>
