@@ -19,7 +19,5 @@
 <#list categories as ctg>
     <p><a href="/tasks/${ctg}">${ctg}</a></p>
 </#list>
-<#if authority == 0>
     <p><a href="/tasks/add">Добавить задачи</a></p>
-</#if>
 </#macro>

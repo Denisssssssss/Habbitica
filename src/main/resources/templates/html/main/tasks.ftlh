@@ -108,6 +108,9 @@
             </div>
         </div>
     </div>
+        <div class="label achievement-categories">
+            <p><a href="/tasks/add">Добавить задачи</a></p>
+        </div>
     </body>
 </#macro>
 </html>

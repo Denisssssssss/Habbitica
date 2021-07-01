@@ -98,8 +98,10 @@
                                     Цена: ${product.price}
                                 </div>
                             </div>
-                            <#if forbidden_prod_id == product.id>
-                                Недостаточно средств
+                            <#if forbidden_prod_id??>
+                                <#if forbidden_prod_id == product.id>
+                                    Недостаточно средств
+                                </#if>
                             </#if>
                             <div class="actions">
                                 <button type="submit" class="btn btn-primary buy-button">Купить</button>
