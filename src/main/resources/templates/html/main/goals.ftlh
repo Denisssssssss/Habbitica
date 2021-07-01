@@ -91,10 +91,6 @@
             </div>
         </div>
     </div>
-
-    <footer class="footer">
-        <div class="second-footer">Copyright ©2021 All rights reserved</div>
-    </footer>
 </body>
 </#macro>
 </html>

@@ -73,6 +73,7 @@
                             <td class="achievement-name">${t.target}</td>
                             <td class="achievement-description">${t.date}</td>
                             <td class="achievement-reward">${t.value}</td>
+                            <td class="achievement-description">${t.title}</td>
                         </tr>
                     </#list>
                 </table>
