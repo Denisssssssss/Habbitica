@@ -38,7 +38,7 @@ public class ProductController {
             model.addAttribute("forbidden_prod_id", id);
         }
 
-        return "shop_page";
+        return "html/main/shop";
     }
 
     @PostMapping("/shop/{product-id}")

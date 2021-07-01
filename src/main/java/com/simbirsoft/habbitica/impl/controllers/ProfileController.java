@@ -54,7 +54,7 @@ public class ProfileController {
 
         model.addAttribute("user", userDetails.getUser());
 
-        return "my_profile_page";
+        return "html/main/myprofile";
     }
 
     @GetMapping("/profile/tasks")
@@ -64,7 +64,7 @@ public class ProfileController {
         userDetails = (UserDetailsImpl) userDetailsService.loadUserByUsername(userDetails.getUsername());
         model.addAttribute("tasks", userDetails.getUser().getTasks());
 
-        return "user_tasks_page";
+        return "html/main/mytasks";
     }
 
     @GetMapping("/profile/achievements")
@@ -73,7 +73,7 @@ public class ProfileController {
 
         model.addAttribute("achievements", userDetails.getUser().getAchievements());
 
-        return "my_achievements_page";
+        return "html/main/mygoals";
     }
 
     @GetMapping("/profile/{user-id}/achievements")
@@ -85,11 +85,7 @@ public class ProfileController {
         model.addAttribute("achievements", user.getAchievements());
         model.addAttribute("user", user);
 
-        if (user.getId().equals(userDetails.getUser().getId())) {
-            return "my_achievements_page";
-        } else {
-            return "achievements_page";
-        }
+        return "html/main/mygoals";
     }
 
     @PostMapping("/profile/tasks/{task-id}")
@@ -127,7 +123,7 @@ public class ProfileController {
         User user = userDetails.getUser();
         model.addAttribute("user", user);
 
-        return "profile_settings_page";
+        return "html/main/edit";
     }
 
     @GetMapping("/profile/{user-id}")
@@ -140,9 +136,9 @@ public class ProfileController {
         model.addAttribute("user", user);
 
         if (user.getId().equals(userDetails.getUser().getId())) {
-            return "my_profile_page";
+            return "html/main/myprofile";
         } else
-            return "profile_page";
+            return "html/main/profile";
     }
 
     @GetMapping("/profile/transactions")
@@ -154,6 +150,6 @@ public class ProfileController {
         model.addAttribute("transactions",
                 transactionService.findAllByUserId(userDetails.getUser().getId()));
 
-        return "user_transactions_page";
+        return "html/main/transactions";
     }
 }

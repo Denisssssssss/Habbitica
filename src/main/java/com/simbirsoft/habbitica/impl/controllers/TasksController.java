@@ -49,7 +49,7 @@ public class TasksController {
         model.addAttribute("size", list.size());
         model.addAttribute("categories", list);
 
-        return "tasks_page";
+        return "html/main/tasks";
     }
 
     @GetMapping("/tasks/add")
@@ -101,6 +101,6 @@ public class TasksController {
         model.addAttribute("size", list.size());
         model.addAttribute("categories", list);
 
-        return "tasks_page";
+        return "html/main/tasks";
     }
 }

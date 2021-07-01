@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/tasks/**").authenticated()
                 .antMatchers("/achievements/**").authenticated()
                 .antMatchers("/shop/**").authenticated()
+                .antMatchers("/friends/**").authenticated()
                 .antMatchers("/tasks/add").hasAuthority("ADMIN")
                 .antMatchers("/achievements/add").hasAuthority("ADMIN")
                 .and()

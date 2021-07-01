@@ -2,16 +2,17 @@ package com.simbirsoft.habbitica.impl.controllers;
 
 import com.simbirsoft.habbitica.api.services.SubscriptionService;
 import com.simbirsoft.habbitica.api.services.UserService;
-import com.simbirsoft.habbitica.impl.models.dto.UserDto;
 import com.simbirsoft.habbitica.impl.models.dto.UsersPage;
 import com.simbirsoft.habbitica.impl.security.details.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class FriendsController {
@@ -31,7 +32,7 @@ public class FriendsController {
         System.out.println(subscriptionService.getFriends(userDetails.getUser()));
         model.addAttribute("friends", subscriptionService.getFriends(userDetails.getUser()));
         model.addAttribute("suggestions", subscriptionService.getSuggestions(userDetails.getUser()));
-        return "friends_page";
+        return "html/main/friends";
     }
 
     @GetMapping("/friends/add/{user-id}")

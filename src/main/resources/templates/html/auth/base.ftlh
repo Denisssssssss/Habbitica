@@ -20,7 +20,6 @@
         *, *:before, *:after {
             box-sizing: border-box;
         }
-
         h1 {
             font-size: 150%;
         }
@@ -144,6 +143,7 @@
         .menu__element a:hover {
             color: #000;
         }
+
 
 
         .footer {
@@ -294,39 +294,36 @@
 
     <footer class="footer">
         <#if first_footer??>
-            <div class="first-footer">
-                <div class="container">
-                    <ul class="footer__list">
-                        <li class="footer__elements">
-                            <div class="footer__elements-title">О Нас</div>
-                            <div class="footer__elements-logo">
-                                <div class="footer__elements-logo-name">Habbitica</div>
-                            </div>
-                            <p class="footer__elements-text">*Описание проекта*</p>
-                        </li>
-                        <li class="footer__elements">
-                            <div class="footer__elements-title">Контакты</div>
-                            <p class="footer__elements-description">Есть вопрос? Свяжитесь с нами через социальные сети
-                                или
-                                почту!</p>
-                            <div class="footer__contacts">
-                                <div class="footer__contacts-address">Казань, Россия</div>
-                                <ul class="footer__links">
-                                    <li class="footer__links-element"><a href=""><img src="../img/vk.png" alt=""></a>
-                                    </li>
-                                    <li class="footer__links-element"><a href=""><img src="../img/instagram.png" alt=""></a>
-                                    </li>
-                                    <li class="footer__links-element"><a href=""><img src="../img/twitter (1).png"
-                                                                                      alt=""></a></li>
-                                    <li class="footer__links-element"><a href=""><img src="../img/facebook (1).png"
-                                                                                      alt=""></a>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+        <div class="first-footer">
+            <div class="container">
+                <ul class="footer__list">
+                    <li class="footer__elements">
+                        <div class="footer__elements-title">О Нас</div>
+                        <div class="footer__elements-logo">
+                            <div class="footer__elements-logo-name">Habbitica</div>
+                        </div>
+                        <p class="footer__elements-text">*Описание проекта*</p>
+                    </li>
+                    <li class="footer__elements">
+                        <div class="footer__elements-title">Контакты</div>
+                        <p class="footer__elements-description">Есть вопрос? Свяжитесь с нами через социальные сети или
+                            почту!</p>
+                        <div class="footer__contacts">
+                            <div class="footer__contacts-address">Казань, Россия</div>
+                            <ul class="footer__links">
+                                <li class="footer__links-element"><a href=""><img src="../img/vk.png" alt=""></a></li>
+                                <li class="footer__links-element"><a href=""><img src="../img/instagram.png" alt=""></a>
+                                </li>
+                                <li class="footer__links-element"><a href=""><img src="../img/twitter (1).png"
+                                                                                  alt=""></a></li>
+                                <li class="footer__links-element"><a href=""><img src="../img/facebook (1).png" alt=""></a>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <div class="second-footer">Copyright ©2021 All rights reserved</div>
+        </div>
+        <div class="second-footer">Copyright ©2021 All rights reserved</div>
         </#if>
     </footer>
 
